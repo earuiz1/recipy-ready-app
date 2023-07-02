@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import IngredientsForm from "./components/IngredientsForm";
 
-interface Recipes {
+import { BASE_URL, KEY } from "./utils/urls";
+import RecipesList from "./components/RecipesList";
+
+export interface Recipes {
   id: number;
   title: string;
   image: string;
   imageType: string;
   usedIngredientCount: number;
   missedIngredientCount: number;
-  missedIngredients: [];
+  missedIngredients: MissingIngredients[];
   usedIngredients: [];
   unusedIngredients: [];
   likes: number;
+}
+
+export interface MissingIngredients {
+  original: string;
 }
 
 const App = () => {
@@ -24,9 +31,7 @@ const App = () => {
     const fetchRecipes = async () => {
       try {
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${updatedIngredients}&number=2&ranking=1&apiKey=${
-            import.meta.env.VITE_SPOONACULAR_KEY
-          }`
+          `${BASE_URL}?ingredients=${updatedIngredients}&number=10&ranking=1&apiKey=${KEY}`
         );
         const data = await response.json();
         setRecipes(data);
@@ -42,6 +47,7 @@ const App = () => {
     <>
       <Navbar />
       <IngredientsForm setIngredients={setIngredients} />
+      <RecipesList recipes={recipes} />
     </>
   );
 };

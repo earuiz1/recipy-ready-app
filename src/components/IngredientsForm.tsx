@@ -18,7 +18,7 @@ const Ingredients = ({ setIngredients }: IngredientsProps) => {
     }
   };
   return (
-    <div className="w-[80%] mx-auto">
+    <div className="w-[90%] mx-auto mb-4">
       <p className="text-slate-100 font-medium text-lg">
         Search Recipes By Ingredients:
       </p>
@@ -26,12 +26,12 @@ const Ingredients = ({ setIngredients }: IngredientsProps) => {
         <input
           type="text"
           placeholder="Enter ingredients separeated by a commas"
-          className="rounded-md px-2 focus:outline-none focus:border-2 focus:border-purple-500"
+          className="rounded-md px-2 focus:outline-none focus:border-2 focus:border-purple-500 w-full"
           ref={inputRef}
         />
         <button
           type="submit"
-          className="text-slate-100 border-2 px-3 py-2 rounded-md"
+          className="text-slate-100 border-2 px-3 rounded-md"
         >
           SEARCH RECIPES
         </button>
