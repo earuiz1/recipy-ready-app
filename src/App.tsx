@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import IngredientsForm from "./components/IngredientsForm";
-
 import { BASE_URL, KEY } from "./utils/urls";
+import Loading from "./components/Loading";
 import RecipesList from "./components/RecipesList";
+import ReactModal from "react-modal";
 
 export interface Recipes {
   id: number;
@@ -22,12 +23,16 @@ export interface MissingIngredients {
   original: string;
 }
 
+ReactModal.setAppElement("#root");
+
 const App = () => {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [recipes, setRecipes] = useState<Recipes[]>([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const updatedIngredients = ingredients.join(",");
+    setLoading(true);
     const fetchRecipes = async () => {
       try {
         const response = await fetch(
@@ -35,6 +40,7 @@ const App = () => {
         );
         const data = await response.json();
         setRecipes(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -46,8 +52,10 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <IngredientsForm setIngredients={setIngredients} />
-      <RecipesList recipes={recipes} />
+      <div className="my-8">
+        <IngredientsForm setIngredients={setIngredients} />
+        {!isLoading ? <RecipesList recipes={recipes} /> : <Loading />}
+      </div>
     </>
   );
 };

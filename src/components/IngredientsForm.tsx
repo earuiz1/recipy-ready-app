@@ -4,7 +4,7 @@ type IngredientsProps = {
   setIngredients: React.Dispatch<SetStateAction<string[]>>;
 };
 
-const Ingredients = ({ setIngredients }: IngredientsProps) => {
+const IngredientsForm = ({ setIngredients }: IngredientsProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
@@ -18,7 +18,7 @@ const Ingredients = ({ setIngredients }: IngredientsProps) => {
     }
   };
   return (
-    <div className="w-[90%] mx-auto mb-4">
+    <div className="w-[90%] mx-auto">
       <p className="text-slate-100 font-medium text-lg">
         Search Recipes By Ingredients:
       </p>
@@ -40,4 +40,4 @@ const Ingredients = ({ setIngredients }: IngredientsProps) => {
   );
 };
 
-export default Ingredients;
+export default IngredientsForm;
