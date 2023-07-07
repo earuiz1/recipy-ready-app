@@ -32,8 +32,8 @@ const App = () => {
 
   useEffect(() => {
     const updatedIngredients = ingredients.join(",");
-    setLoading(true);
     const fetchRecipes = async () => {
+      setLoading(true);
       try {
         const response = await fetch(
           `${BASE_URL}?ingredients=${updatedIngredients}&number=10&ranking=1&apiKey=${KEY}`

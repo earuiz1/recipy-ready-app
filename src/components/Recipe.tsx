@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Recipes } from "../App";
-import { customStyles } from "../utils/styles";
 
 import Modal from "react-modal";
 import ModalContent from "./ModalContent";
@@ -22,24 +21,18 @@ export interface Video {
 const Recipe = ({ recipe }: RecipeProps) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [video, setVideo] = useState<Video[]>([]);
-  const [isLoading, setLoading] = useState(false);
-
   const { title, image, missedIngredients } = recipe;
 
   const fetchTutorial = async () => {
-    setLoading(true);
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title}&key=${
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title} tutorial&key=${
           import.meta.env.VITE_YOUTUBE_KEY
         }&type=video&maxResults=1`
       );
-
       const data = await response.json();
-
       setModalOpen(true);
       setVideo(data.items);
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -48,11 +41,11 @@ const Recipe = ({ recipe }: RecipeProps) => {
     <>
       <Modal
         isOpen={isModalOpen}
-        onRequestClose={() => setModalOpen(false)}
         contentLabel="Tutorial Video Modal"
-        style={customStyles}
+        className="absolute top-1/2 left-1/2 right-auto bottom-auto -mr-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#202020] border-none rounded-md w-[90%] md:w-[70%] lg:w-[50%]"
+        overlayClassName="fixed top-0 left-0 w-full h-full bg-slate-950/90"
       >
-        <ModalContent video={video} isLoading={isLoading} />
+        <ModalContent video={video} setModalOpen={setModalOpen} />
       </Modal>
       <div className="w-[350px] border-2 p-3 rounded-md">
         <div className="flex flex-col w-full h-full gap-2">
