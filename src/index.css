@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,4 +6,17 @@
 
 html{
   background-color: #202020;
+}
+
+h1,h2{
+  font-family: 'Kalam', cursive;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill{
+  -webkit-text-fill-color: black !important;
+}
+
+#floatingInput:-webkit-autofill + label {
+  -webkit-text-fill-color: black !important;
 }

@@ -14,12 +14,16 @@ export interface Recipes {
   usedIngredientCount: number;
   missedIngredientCount: number;
   missedIngredients: MissingIngredients[];
-  usedIngredients: [];
+  usedIngredients: UsedIngredients[];
   unusedIngredients: [];
   likes: number;
 }
 
 export interface MissingIngredients {
+  original: string;
+}
+
+export interface UsedIngredients {
   original: string;
 }
 
