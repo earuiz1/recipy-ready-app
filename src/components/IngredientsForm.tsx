@@ -14,6 +14,7 @@ const validationSchema = yup.object().shape({
   ingredients: yup
     .string()
     .required("Please enter ingredients separated by commas")
+    .min(3, "Ingredient must be at least 3 characters long")
     .test(
       "comma-separated",
       "Please enter valid ingredients separated by commas",

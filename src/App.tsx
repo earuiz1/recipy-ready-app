@@ -35,6 +35,9 @@ const App = () => {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (ingredients.length === 0) {
+      return; // Skip API request if ingredients array is empty
+    }
     const updatedIngredients = ingredients.join(",");
     const fetchRecipes = async () => {
       setLoading(true);
@@ -43,7 +46,12 @@ const App = () => {
           `${SPOONACULAR_BASE_URL}?ingredients=${updatedIngredients}&number=10&ranking=1&apiKey=${SPOONACULAR_KEY}`
         );
         const data = await response.json();
-        setRecipes(data);
+        if (Array.isArray(data) && data.length > 0) {
+          setRecipes(data);
+        } else {
+          setRecipes([]); // Set empty array when no recipes found
+          alert("No recipes found!");
+        }
         setLoading(false);
       } catch (error) {
         console.log(error);
