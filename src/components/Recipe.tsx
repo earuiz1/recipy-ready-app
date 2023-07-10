@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Recipes } from "../App";
 import { TfiYoutube } from "react-icons/tfi";
-
 import Modal from "react-modal";
 import ModalContent from "./ModalContent";
+import { GOOGLE_BASE_URL, GOOGLE_KEY } from "../utils/apiConfig";
 
 type RecipeProps = {
   recipe: Recipes;
@@ -28,9 +28,7 @@ const Recipe = ({ recipe }: RecipeProps) => {
   const fetchTutorial = async () => {
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title}&key=${
-          import.meta.env.VITE_YOUTUBE_KEY
-        }&type=video&maxResults=1`
+        `${GOOGLE_BASE_URL}?part=snippet&q=${title}&key=${GOOGLE_KEY}&type=video&maxResults=1`
       );
       const data = await response.json();
       setModalOpen(true);
@@ -50,7 +48,7 @@ const Recipe = ({ recipe }: RecipeProps) => {
       >
         <ModalContent video={video} setModalOpen={setModalOpen} />
       </Modal>
-      <div className="w-[350px] border border-neutral-400 px-3 py-5 rounded-md shadow-md shadow-slate-600">
+      <div className="w-[350px] border border-neutral-400 px-3 py-5 rounded-md shadow-md shadow-slate-600 transform hover:-translate-y-2">
         <div className="flex flex-col w-full h-full gap-4">
           <h2 className="font-bold text-2xl text-slate-100 text-center">
             {title}

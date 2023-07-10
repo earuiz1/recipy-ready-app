@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import IngredientsForm from "./components/IngredientsForm";
-import { BASE_URL, KEY } from "./utils/urls";
+import { SPOONACULAR_BASE_URL, SPOONACULAR_KEY } from "./utils/apiConfig";
 import Loading from "./components/Loading";
 import RecipesList from "./components/RecipesList";
 import ReactModal from "react-modal";
@@ -40,7 +40,7 @@ const App = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `${BASE_URL}?ingredients=${updatedIngredients}&number=10&ranking=1&apiKey=${KEY}`
+          `${SPOONACULAR_BASE_URL}?ingredients=${updatedIngredients}&number=10&ranking=1&apiKey=${SPOONACULAR_KEY}`
         );
         const data = await response.json();
         setRecipes(data);
