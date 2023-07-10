@@ -43,12 +43,12 @@ const Recipe = ({ recipe }: RecipeProps) => {
       <Modal
         isOpen={isModalOpen}
         contentLabel="Tutorial Video Modal"
-        className="absolute top-1/2 left-1/2 right-auto bottom-auto -mr-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#202020] border-none shadow-lg shadow-slate-800 rounded-md w-[90%] md:w-[70%] lg:w-[50%]"
+        className="absolute top-1/2 left-1/2 right-auto bottom-auto -mr-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#202020] border border-neutral-500 shadow-lg shadow-slate-800 rounded-md w-[90%] md:w-[70%] lg:w-[50%]"
         overlayClassName="fixed top-0 left-0 w-full h-full bg-slate-950/90"
       >
         <ModalContent video={video} setModalOpen={setModalOpen} />
       </Modal>
-      <div className="w-[350px] border border-neutral-400 px-3 py-5 rounded-md shadow-md shadow-slate-600 transform hover:-translate-y-2">
+      <div className="w-[350px] border border-neutral-400 px-3 py-5 rounded-md shadow-md shadow-slate-600 transform hover:scale-[105%]">
         <div className="flex flex-col w-full h-full gap-4">
           <h2 className="font-bold text-2xl text-slate-100 text-center">
             {title}
@@ -105,7 +105,7 @@ const Recipe = ({ recipe }: RecipeProps) => {
             </ul>
           </div>
           <button
-            className="mt-auto bg-transparent border-2 border-neutral-200 self-end rounded-md py-2 px-3 outline-none hover:bg-red-600/90"
+            className="mt-auto bg-transparent border border-neutral-200 self-end rounded-md py-2 px-3 outline-none hover:bg-red-600/90"
             onClick={fetchTutorial}
           >
             <TfiYoutube className="fill-slate-100" size={20} />

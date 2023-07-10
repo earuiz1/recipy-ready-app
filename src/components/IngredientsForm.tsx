@@ -13,7 +13,7 @@ interface FormValues {
 const validationSchema = yup.object().shape({
   ingredients: yup
     .string()
-    .required("Please enter ingredients separated by commas")
+    .required("An ingredient is required!")
     .min(3, "Ingredient must be at least 3 characters long")
     .test(
       "comma-separated",
@@ -54,7 +54,7 @@ const IngredientsForm = ({ setIngredients }: IngredientsProps) => {
           <input
             type="text"
             className={`peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-400 bg-transparent bg-clip-padding px-3 py-4 text-sm font-normal leading-tight transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:outline-none peer-focus:text-primary text-neutral-200 [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem] ${
-              errors.ingredients && "border-b-2 border-[#e87c03]"
+              errors.ingredients && "border-b-4 border-b-[#e87c03]"
             }`}
             id="floatingInput"
             placeholder="Search"
@@ -62,7 +62,7 @@ const IngredientsForm = ({ setIngredients }: IngredientsProps) => {
             {...register("ingredients")}
           />
           {errors.ingredients && (
-            <p className="text-[#e87c03] font-medium text-sm mt-1">
+            <p className="text-[#e87c03] font-medium text-xs mt-1">
               {errors.ingredients.message}
             </p>
           )}

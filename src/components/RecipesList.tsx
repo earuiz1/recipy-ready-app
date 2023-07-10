@@ -7,7 +7,7 @@ type RecipesListProps = {
 const RecipesList = ({ recipes }: RecipesListProps) => {
   return (
     <div className="w-[90%] mx-auto mt-8">
-      <div className=" w-full flex justify-center flex-wrap gap-x-4 gap-y-8 ">
+      <div className=" w-full flex justify-center flex-wrap gap-x-6 gap-y-8 ">
         {recipes.map((recipe, index) => {
           return <Recipe key={index} recipe={recipe} />;
         })}
